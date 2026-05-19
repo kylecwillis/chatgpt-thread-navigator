@@ -1,8 +1,14 @@
+<p align="center">
+  <img src="media/icon-source.png" alt="ThreadNav icon" width="120" />
+</p>
+
 # ChatGPT Thread Navigator
 
 A floating outline for long ChatGPT conversations.
 
 Long ChatGPT threads are powerful but hard to navigate. ThreadNav adds a small floating outline to the right side of `chatgpt.com` so you can jump through long threads like a document. It lists every question you've asked plus any `h1`/`h2`/`h3` headings from assistant responses. Click any item to smooth-scroll to that part of the thread. Star the ones you want to find again.
+
+![ThreadNav sidebar on a ChatGPT thread](media/screenshot.png)
 
 ## Install
 
@@ -39,7 +45,8 @@ Until it lands in the Chrome Web Store, load it unpacked:
 manifest.json   MV3 manifest, content-script registration
 content.js      Outline build, scroll, observers, bookmarks
 styles.css      Sidebar styling, light/dark variables
-icon.png        128x128 toolbar icon
+icon-*.png      Toolbar icons (16, 32, 48, 128)
+media/          Source icon + screenshot (not shipped in the extension)
 ```
 
 ## License
