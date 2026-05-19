@@ -4,7 +4,10 @@
 
 # ChatGPT Thread Navigator
 
-A floating outline for long ChatGPT conversations.
+[![Release](https://img.shields.io/github/v/release/kylecwillis/chatgpt-thread-navigator?label=release)](https://github.com/kylecwillis/chatgpt-thread-navigator/releases)
+[![License](https://img.shields.io/github/license/kylecwillis/chatgpt-thread-navigator)](LICENSE)
+
+A floating outline for long ChatGPT conversations. Works in Chrome, Edge, Brave, Arc, and any Chromium browser.
 
 Long ChatGPT threads are powerful but hard to navigate. ThreadNav adds a small floating outline to the right side of `chatgpt.com` so you can jump through long threads like a document. It lists every question you've asked plus any `h1`/`h2`/`h3` headings from assistant responses. Click any item to smooth-scroll to that part of the thread. Star the ones you want to find again.
 
@@ -14,10 +17,10 @@ Long ChatGPT threads are powerful but hard to navigate. ThreadNav adds a small f
 
 Until it lands in the Chrome Web Store, load it unpacked:
 
-1. Clone or download this repo
+1. Download the [latest release zip](https://github.com/kylecwillis/chatgpt-thread-navigator/releases) and unzip it (or clone this repo)
 2. Open `chrome://extensions`
 3. Toggle **Developer mode** (top right)
-4. Click **Load unpacked** and select this folder
+4. Click **Load unpacked** and select the folder
 5. Open or refresh `chatgpt.com`
 
 ## Features
