@@ -114,15 +114,12 @@
       '[data-message-author-role="user"], [data-message-author-role="assistant"]'
     );
 
-    let pendingHeadings = [];
-
     turns.forEach((turn) => {
       const role = turn.getAttribute("data-message-author-role");
       if (role === "user") {
         const id = ensureId(turn);
         const label = truncate(turn.innerText, 70);
         if (label) items.push({ id, label, depth: "q" });
-        pendingHeadings = [];
       } else if (role === "assistant") {
         const headings = turn.querySelectorAll(":scope h1, :scope h2, :scope h3");
         headings.forEach((h) => {
@@ -184,7 +181,6 @@
     const beforeY = window.scrollY;
     target.scrollIntoView({ behavior: "smooth", block: "start" });
 
-    // If the window didn't actually scroll, hunt for an inner scroller.
     setTimeout(() => {
       if (Math.abs(window.scrollY - beforeY) < 2) {
         const scroller = findScrollableAncestor(target);
@@ -210,11 +206,7 @@
     if (rebuildTimer) return;
     rebuildTimer = setTimeout(() => {
       rebuildTimer = null;
-      try {
-        render(collectItems());
-      } catch (err) {
-        console.warn("[outline] rebuild failed", err);
-      }
+      render(collectItems());
     }, REBUILD_DEBOUNCE_MS);
   }
 
