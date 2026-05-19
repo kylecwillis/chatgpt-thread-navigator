@@ -1,8 +1,10 @@
 (() => {
   const ROOT_ID = "cgpt-outline";
   const STORAGE_KEY = "cgpt-outline-collapsed";
+  const BOOKMARK_KEY = "threadnav-bookmarks-v1";
   const ID_ATTR = "data-outline-id";
   const REBUILD_DEBOUNCE_MS = 250;
+  const STAR_SVG = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.6l1.95 3.95 4.36.63-3.16 3.08.75 4.34L8 11.55l-3.9 2.05.75-4.34L1.69 6.18l4.36-.63L8 1.6z"/></svg>';
 
   let idCounter = 0;
   let rebuildTimer = null;
@@ -93,6 +95,43 @@
     root.classList.toggle("light", !dark);
   }
 
+  function getConversationId() {
+    const m = location.pathname.match(/\/c\/([a-z0-9-]+)/i);
+    return m ? m[1] : "default";
+  }
+
+  function loadBookmarks() {
+    try {
+      return JSON.parse(localStorage.getItem(BOOKMARK_KEY) || "{}");
+    } catch {
+      return {};
+    }
+  }
+
+  function saveBookmarks(data) {
+    try {
+      localStorage.setItem(BOOKMARK_KEY, JSON.stringify(data));
+    } catch {}
+  }
+
+  function isStarred(label) {
+    const data = loadBookmarks();
+    const arr = data[getConversationId()];
+    return Array.isArray(arr) && arr.includes(label);
+  }
+
+  function toggleStar(label) {
+    const cid = getConversationId();
+    const data = loadBookmarks();
+    const set = new Set(data[cid] || []);
+    if (set.has(label)) set.delete(label);
+    else set.add(label);
+    if (set.size === 0) delete data[cid];
+    else data[cid] = [...set];
+    saveBookmarks(data);
+    return set.has(label);
+  }
+
   function truncate(s, n) {
     s = (s || "").replace(/\s+/g, " ").trim();
     if (s.length <= n) return s;
@@ -156,8 +195,22 @@
       const li = document.createElement("li");
       li.className = "cgpt-item " + it.depth;
       li.dataset.target = it.id;
-      li.textContent = it.label;
+      li.dataset.label = it.label;
       li.title = it.label;
+      if (isStarred(it.label)) li.classList.add("starred");
+
+      const labelEl = document.createElement("span");
+      labelEl.className = "cgpt-label";
+      labelEl.textContent = it.label;
+
+      const star = document.createElement("button");
+      star.className = "cgpt-star";
+      star.type = "button";
+      star.setAttribute("aria-label", "Bookmark");
+      star.innerHTML = STAR_SVG;
+
+      li.appendChild(labelEl);
+      li.appendChild(star);
       frag.appendChild(li);
     });
 
@@ -197,6 +250,12 @@
   function onListClick(e) {
     const li = e.target.closest(".cgpt-item");
     if (!li) return;
+    if (e.target.closest(".cgpt-star")) {
+      e.stopPropagation();
+      const nowStarred = toggleStar(li.dataset.label);
+      li.classList.toggle("starred", nowStarred);
+      return;
+    }
     const id = li.dataset.target;
     const target = document.querySelector(`[${ID_ATTR}="${CSS.escape(id)}"]`);
     if (target) scrollToTarget(target);
