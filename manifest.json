@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "ChatGPT Thread Navigator",
   "short_name": "ThreadNav",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A floating outline for long ChatGPT conversations. Lists every question and assistant heading. Click to jump.",
   "icons": {
     "128": "icon.png"
