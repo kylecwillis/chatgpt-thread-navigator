@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.1] — 2026-05-19
+- Branded ThreadNav icon (16/32/48/128)
+- First Chrome Web Store submission
+
 ## [0.2.0] — 2026-05-19
 - Star/bookmark items in the sidebar, scoped per conversation, persisted locally
 - README and MIT license
