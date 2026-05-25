@@ -4,6 +4,7 @@
 
 # ChatGPT Thread Navigator
 
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/noacnaakkdlmbamnenjmehiblnpekccm?label=Chrome%20Web%20Store)](https://chromewebstore.google.com/detail/chatgpt-thread-navigator/noacnaakkdlmbamnenjmehiblnpekccm)
 [![Release](https://img.shields.io/github/v/release/kylecwillis/chatgpt-thread-navigator?label=release)](https://github.com/kylecwillis/chatgpt-thread-navigator/releases)
 [![License](https://img.shields.io/github/license/kylecwillis/chatgpt-thread-navigator)](LICENSE)
 
@@ -15,7 +16,9 @@ Long ChatGPT threads are powerful but hard to navigate. ThreadNav adds a small f
 
 ## Install
 
-Until it lands in the Chrome Web Store, load it unpacked:
+**[Add to Chrome from the Chrome Web Store](https://chromewebstore.google.com/detail/chatgpt-thread-navigator/noacnaakkdlmbamnenjmehiblnpekccm)** — one click, auto-updates.
+
+Prefer to load it unpacked:
 
 1. Download the [latest release zip](https://github.com/kylecwillis/chatgpt-thread-navigator/releases) and unzip it (or clone this repo)
 2. Open `chrome://extensions`
